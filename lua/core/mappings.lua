@@ -16,6 +16,25 @@ M.prefixes = {
 }
 
 M.defined = {
+	default = {
+		n = {
+			['<F5>'] = { '<Cmd>wa<bar>lua require(\'FTerm\').toggle()<CR><Up><CR>', 'Execute last terminal command' },
+
+			['<C-s>'] = { '<Cmd>wa<CR>', 'Save all buffers' },
+
+			['<A-,>'] = { '<Cmd>BufferPrevious<CR>', 'Goto previous buffer' },
+			['<A-.>'] = { '<Cmd>BufferNext<CR>', 'Goto next buffer' },
+
+			['<A-<>'] = { '<Cmd>BufferMovePrevious<CR>', 'Move buffer backward' },
+			['<A->>'] = { '<Cmd>BufferMoveNext<CR>', 'Move buffer forwared' },
+
+			['<A-p>'] = { '<Cmd>BufferPin<CR>', 'Pin current buffer' },
+
+			['<A-c>'] = { '<Cmd>BufferClose<CR>', 'Close buffer' },
+			['<A-r>'] = { '<Cmd>BufferRestore<CR>', 'Restore buffer' },
+		}
+	},
+
 	lsp = {
 		n = {
 			["[d"] = { function() vim.diagnostic.goto_prev({}) end, "Previous [D]iagnostic" },
@@ -62,25 +81,20 @@ M.defined = {
 			['<leader>sg'] = { function() require('telescope.builtin').live_grep() end, '[G]rep' },
 
 			['<leader>fw'] = { function() require('telescope.builtin').grep_string() end, '[W]ord' },
-			['<leader>ff'] = { function() require('telescope.builtin').find_files() end, '[F]iles' },
+			['<leader>ff'] = { function() require('telescope.builtin').find_files({ hidden = true }) end, '[F]iles' },
 
-			['<leader>fb'] = { '<cmd>:Telescope file_browser<cr>', '[B]rowser' },
+			['<leader>fb'] = { '<cmd>:Telescope file_browser hidden=true initial_mode=normal path=%:p:h select_buffer=true<cr>',
+				'[B]rowser' },
 		}
 	},
 
 	terminal = {
 		n = {
-			['<leader>tf'] = { '<cmd>:ToggleTerm direction=float<cr>', '[F]loating Terminal' },
-			['<leader>tv'] = { '<cmd>:ToggleTerm direction=vertical<cr>', '[V]ertical Terminal' },
-			['<leader>th'] = { '<cmd>:ToggleTerm direction=horizontal<cr>', '[H]orizontal Terminal' },
+			['<leader>tt'] = { function() require('FTerm').toggle() end, '[T]erminal' },
 		},
 
 		t = {
-			['<esc>'] = { [[<C-\><C-n>]], 'escape from terminal' },
-			['<C-h>'] = { [[<Cmd>wincmd h<CR>]], 'jump to left window' },
-			['<C-j>'] = { [[<Cmd>wincmd j<CR>]], 'jump to down window' },
-			['<C-k>'] = { [[<Cmd>wincmd k<CR>]], 'jump to up window' },
-			['<C-l>'] = { [[<Cmd>wincmd l<CR>]], 'jump to right window' },
+			['<ESC>'] = { [[<C-\><C-n><C-w>q]], 'escape from terminal' },
 		},
 	},
 }

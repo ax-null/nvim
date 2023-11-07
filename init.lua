@@ -1,4 +1,3 @@
--- lazy plugin manager
 local lazy_path = vim.fn.stdpath('data') .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazy_path) then
@@ -12,8 +11,5 @@ end
 
 vim.opt.rtp:prepend(lazy_path)
 
--- Load Configurations
-require "config"
-
--- Load Plugins
+require "core"
 require "plugins"
