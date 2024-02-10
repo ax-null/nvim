@@ -36,7 +36,7 @@ return {
 					require('lspconfig').jdtls.setup {
 						capabilities = capabilities,
 						cmd = {
-							vim.fn.stdpath('data') .. '/mason/bin/jdtls.cmd'
+							vim.fn.stdpath('data') .. '/mason/bin/jdtls'
 						},
 						settings = {
 							sources = {

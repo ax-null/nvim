@@ -28,6 +28,4 @@ vim.g.maplocalleader = ' '
 
 vim.o.undofiles = true
 
-vim.env.SHELL = 'powershell'
-
 require('core.mappings').load_mapping('default')
